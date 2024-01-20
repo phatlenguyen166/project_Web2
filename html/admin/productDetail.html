@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="https://kit.fontawesome.com/1acf2d22a5.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="../../css/style_AddProduct.css"> <!-- css style - co the sua lai -->
+		<title>Chi tiết sản phẩm</title>
+	</head>
+    <body>
+        <header>
+            <nav>
+				<ul class="navbar-list">
+					<!--link hompage-->
+					<li class="left">
+						<a href="productAdmin.html">
+						<img src="../../img/thegioididong.png">
+						</a>
+					</li>
+					<div class="right">
+						<li>
+							<input type="text" placeholder="Tên sản phẩm..."> 
+							<a href="productAdmin.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+						</li>
+						<li>
+							<i class="fa-solid fa-circle-user"></i> Thanh
+						</li>
+					</div>
+				</ul>
+		</nav>
+        </header>
+        <main>
+			<aside id="mySidebar">
+				<ul>
+					<li><a onclick="w3_close()">Đóng &times;</a></li>
+					<li><a href="productAdmin.html">Sản phẩm</a></li>
+					<li><a href="orderAdmin.html">Đơn hàng</a></li>
+					<li><a href="userAdmin.html">Người dùng</a></li>
+					<li><a href="thongKeAdmin.html">Thống kê</a></li>
+				</ul>
+			</aside>
+			<section id="main"> 
+				<button id="openNav" class="menu-button" onclick="w3_open()">&#9776; Menu</button>
+                <h1>Thêm Sản Phẩm</h1>
+                    <form action="#" id="formId">
+						<div class="change_img">
+							<img src="../../img/lap1.png" alt="laptop" id="product_pic" style="margin-bottom: 10px;">
+						</div>
+						<div class="edit">
+							<label for="product_name">Loại</label>
+							<input type="text" value="ACER" disabled>
+						</div> 
+						<div class="edit">
+							<label for="product_name">Tên</label>
+							<input type="text" value="laptop ACER" disabled>
+						</div> 
+						<div class="edit">
+							<label for="product_price">Giá</label>
+							<input type="text" value="18.999.999đ" disabled>
+						</div>
+						<div class="edit">
+							<label for="product_ram">RAM</label>
+							<input type="text" value="8 GBDDR4 2 khe (1 khe 8 GB onboard + 1 khe trống) 3200 MHz" disabled>
+						</div>
+						<div class="edit">
+							<label for="product_quantity">Số lượng</label>
+							<input type="text" value="15" disabled>
+						</div>
+						<div class="edit">
+							<label for="product_quantity">Mô tả</label>
+							<textarea name="textarea_field" disabled>Laptop Accer còn có lối thiết kế hầm hố với sắc đen nam tính, tạo nên sự mạnh mẽ, đậm tính thể thao.</textarea>
+						</div>
+						<div class="buttons">
+							<a href="productAdmin.html"><i class="fa-solid fa-x"></i>Đóng</a>
+							<a href="editProduct.html"><i class="fas fa-edit"></i>Chỉnh sửa</a>
+						</div>
+                    </form>
+            </section>    
+        </main>
+		<script>
+			
+			// js cua phan aside menu
+			function w3_open() {
+  				document.getElementById("main").style.marginLeft = "15%";
+  				document.getElementById("mySidebar").style.width = "15%";
+  				document.getElementById("mySidebar").style.display = "block";
+  				document.getElementById("openNav").style.display = 'none';
+				}
+			function w3_close() {
+  				document.getElementById("main").style.marginLeft = "0%";
+  				document.getElementById("mySidebar").style.display = "none";
+  				document.getElementById("openNav").style.display = "inline-block";
+			}
+
+			let productPic = document.getElementById("product_pic");
+			let inputFile = document.getElementById("input_file");
+
+
+			inputFile.onchange = function(){
+				productPic.src = URL.createObjectURL(inputFile.files[0]);
+			}
+
+			function warning() {
+  				// Lấy tất cả các phần tử <input> trừ phần tử đầu tiên
+				var inputs = document.querySelectorAll("input:not(:first-child)");
+
+				// Kiểm tra từng phần tử <input>
+				for (var i = 0; i < inputs.length; i++) {
+					var inputValue = inputs[i].value;
+					
+					if (inputValue == 0) {
+						alert("Bạn chưa điền đủ thông tin !!!");
+						return;
+					}
+				}
+				var result = confirm("Bạn có chắc muốn thêm sản phẩm này không ?");
+				if (result)
+					alert("Bạn đã thêm thành công !");
+			}
+
+			//prevent refresh page
+			var form = document.getElementById("formId");
+			function submitForm(event){
+				event.preventDefault();
+			}
+
+			//calling a function during form submission
+			form.addEventListener('submit', submitForm);
+			</script>
+    </body>
